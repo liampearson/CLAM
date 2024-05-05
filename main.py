@@ -163,7 +163,7 @@ if args.task == 'task_1_tumor_vs_normal':
 #                            patient_strat=False,
 #                            ignore=[])
 
-    dataset = Generic_MIL_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file_subset.csv',
+    dataset = Generic_MIL_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file.csv',
                             data_dir= os.path.join(args.data_root_dir, 'features'),
                             shuffle = False, 
                             seed = args.seed, 

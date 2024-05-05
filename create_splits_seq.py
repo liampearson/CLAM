@@ -30,7 +30,7 @@ if args.task == 'task_1_tumor_vs_normal':
 #                            patient_strat=True,
 #                            ignore=[])
     print("generating dataset object using Generic_WSI")
-    dataset = Generic_WSI_Classification_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file_subset.csv',
+    dataset = Generic_WSI_Classification_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file.csv',
                             shuffle = False, 
                             seed = args.seed, 
                             print_info = True,
