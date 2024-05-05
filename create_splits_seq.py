@@ -22,13 +22,21 @@ args = parser.parse_args()
 
 if args.task == 'task_1_tumor_vs_normal':
     args.n_classes=2
-    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_dummy_clean.csv',
+#    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_dummy_clean.csv',
+#                            shuffle = False, 
+#                            seed = args.seed, 
+#                            print_info = True,
+#                            label_dict = {'normal_tissue':0, 'tumor_tissue':1},
+#                            patient_strat=True,
+#                            ignore=[])
+    print("generating dataset object using Generic_WSI")
+    dataset = Generic_WSI_Classification_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file_subset.csv',
                             shuffle = False, 
                             seed = args.seed, 
                             print_info = True,
                             label_dict = {'normal_tissue':0, 'tumor_tissue':1},
                             patient_strat=True,
-                            ignore=[])
+                            ignore=['stage', 'center'])
 
 elif args.task == 'task_2_tumor_subtyping':
     args.n_classes=3
