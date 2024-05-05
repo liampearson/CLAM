@@ -154,14 +154,23 @@ print('\nLoad Dataset')
 
 if args.task == 'task_1_tumor_vs_normal':
     args.n_classes=2
-    dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_dummy_clean.csv',
-                            data_dir= os.path.join(args.data_root_dir, 'tumor_vs_normal_resnet_features'),
+#    dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_dummy_clean.csv',
+#                            data_dir= os.path.join(args.data_root_dir, 'tumor_vs_normal_resnet_features'),
+#                            shuffle = False, 
+#                            seed = args.seed, 
+#                            print_info = True,
+#                            label_dict = {'normal_tissue':0, 'tumor_tissue':1},
+#                            patient_strat=False,
+#                            ignore=[])
+
+    dataset = Generic_MIL_Dataset(csv_path = '/scratch/mn91/lp2767/data/dataset_csv_file_subset.csv',
+                            data_dir= os.path.join(args.data_root_dir, 'features'),
                             shuffle = False, 
                             seed = args.seed, 
                             print_info = True,
                             label_dict = {'normal_tissue':0, 'tumor_tissue':1},
                             patient_strat=False,
-                            ignore=[])
+                            ignore=['stage', 'center'])
 
 elif args.task == 'task_2_tumor_subtyping':
     args.n_classes=3
@@ -187,11 +196,14 @@ args.results_dir = os.path.join(args.results_dir, str(args.exp_code) + '_s{}'.fo
 if not os.path.isdir(args.results_dir):
     os.mkdir(args.results_dir)
 
+# Change the current working directory
+#os.chdir("/scratch/mn91/lp2767/CLAM")
 if args.split_dir is None:
     args.split_dir = os.path.join('splits', args.task+'_{}'.format(int(args.label_frac*100)))
 else:
     args.split_dir = os.path.join('splits', args.split_dir)
 
+print('os.getcwd: ', os.getcwd()) #debug
 print('split_dir: ', args.split_dir)
 assert os.path.isdir(args.split_dir)
 
